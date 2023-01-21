@@ -247,8 +247,7 @@ local function LoadConfiguration(Configuration)
 				if RayfieldLibrary.Flags[FlagName].Type == "ColorPicker" then
 					RayfieldLibrary.Flags[FlagName]:Set(UnpackColor(FlagValue))
 				else
-					if RayfieldLibrary.Flags[FlagName].CurrentValue or RayfieldLibrary.Flags[FlagName].Current
-					bind or RayfieldLibrary.Flags[FlagName].CurrentOption or RayfieldLibrary.Flags[FlagName].Color ~= FlagValue then RayfieldLibrary.Flags[FlagName]:Set(FlagValue) end
+					if RayfieldLibrary.Flags[FlagName].CurrentValue or RayfieldLibrary.Flags[FlagName].CurrentKeybind or RayfieldLibrary.Flags[FlagName].CurrentOption or RayfieldLibrary.Flags[FlagName].Color ~= FlagValue then RayfieldLibrary.Flags[FlagName]:Set(FlagValue) end
 				end    
 			end)
 		else
@@ -893,6 +892,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 	
 	
 	pcall(function()
+		if Settings.FileExtension and Settings.FileExtension.Name then
+			ConfigurationExtension = "."..Settings.FileExtension.Name
+		end
 		if not Settings.ConfigurationSaving.FileName then
 			Settings.ConfigurationSaving.FileName = tostring(game.PlaceId)
 		end
@@ -925,7 +927,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 		end
 	end
 	
-	if Settings.Discord then
+	if Settings.Discord and Settings.Discord.Enabled then
 		if not isfolder(RayfieldFolder.."/Discord Invites") then
 			makefolder(RayfieldFolder.."/Discord Invites")
 		end
@@ -960,8 +962,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 			return
 		end
 		
-		if not isfolder(OhioHub.."/Key System") then
-			makefolder(OhioHub.."/Key System")
+		if not isfolder(RayfieldFolder.."/Key System") then
+			makefolder(RayfieldFolder.."/Key System")
 		end
 		
 		if Settings.KeySettings.GrabKeyFromSite then
