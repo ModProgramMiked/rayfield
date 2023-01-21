@@ -12,8 +12,8 @@ iRay  | Programming
 
 local Release = "Beta 7R"
 local NotificationDuration = 6.5
-local RayfieldFolder = "Rayfield"
-local ConfigurationFolder = RayfieldFolder.."/Configurations"
+local RayfieldFolder = "Ohio Hub"
+local ConfigurationFolder = Ohio Hub.."/Configurations"
 local ConfigurationExtension = ".json"
 
 
